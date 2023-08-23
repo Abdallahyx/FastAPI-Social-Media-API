@@ -72,7 +72,72 @@ To get started with the API, follow these steps:
 - **Parameters:**
   - `id` (required): Id of the post
 
-... (continue for other endpoints)
+#### Delete Post
+
+- **Description:** Delete a specific post.
+- **Method:** DELETE
+- **Path:** /posts/{id}
+- **Parameters:**
+  - `id` (required): Id of the post to delete
+- **Responses:**
+  - 204: Successful Response
+  - 422: Validation Error, HTTPValidationError JSON
+- **Security:** OAuth2PasswordBearer
+
+#### Update Post
+
+- **Description:** Update a specific post.
+- **Method:** PUT
+- **Path:** /posts/{id}
+- **Parameters:**
+  - `id` (required): Id of the post to update
+- **Request Body:** JSON structure of a PostRequest
+- **Responses:**
+  - 202: Successful Response, PostResponse JSON
+  - 422: Validation Error, HTTPValidationError JSON
+- **Security:** OAuth2PasswordBearer
+
+#### Get User
+
+- **Description:** Retrieve user information by ID.
+- **Method:** GET
+- **Path:** /users/{id}
+- **Parameters:**
+  - `id` (required): Id of the user
+- **Responses:**
+  - 200: Successful Response, UserResponse JSON
+  - 422: Validation Error, HTTPValidationError JSON
+
+#### Register
+
+- **Description:** Register a new user.
+- **Method:** POST
+- **Path:** /register
+- **Request Body:** JSON structure of a UserRequest
+- **Responses:**
+  - 201: Successful Response, UserResponse JSON
+  - 422: Validation Error, HTTPValidationError JSON
+
+#### Login
+
+- **Description:** User login.
+- **Method:** POST
+- **Path:** /login
+- **Request Body:** x-www-form-urlencoded data, Body_login_login_post schema
+- **Responses:**
+  - 200: Successful Response, Token JSON
+  - 422: Validation Error, HTTPValidationError JSON
+
+#### Vote
+
+- **Description:** Vote on a post.
+- **Method:** POST
+- **Path:** /vote/
+- **Request Body:** JSON structure of a Vote
+- **Responses:**
+  - 201: Successful Response
+  - 422: Validation Error, HTTPValidationError JSON
+- **Security:** OAuth2PasswordBearer
 
 ## Components
 
@@ -101,6 +166,42 @@ To get started with the API, follow these steps:
 - `user_id`: User Id of the post creator
 - `user`: UserResponse JSON
  
+#### PostRequest
+
+- `title`: Post title
+- `content`: Post content
+- `published`: Post publication status (default: true)
+
+#### PostResponse
+
+- `Post`: Post JSON
+- `Votes`: Number of votes for the post (default: 0)
+
+#### Token
+
+- `access_token`: Access token for authentication
+- `token_type`: Type of the token
+#### UserRequest
+
+- `email`: User's email address (in email format)
+- `password`: User's password
+
+#### UserResponse
+
+- `id`: User's Id
+- `email`: User's email address
+- `created_at`: Timestamp of user creation
+
+#### ValidationError
+
+- `loc`: Location of the validation error (array of strings or integers)
+- `msg`: Error message
+- `type`: Error type
+
+#### Vote
+
+- `post_id`: Id of the post being voted on
+- `dir`: Vote direction (0 for downvote, 1 for upvote)
 
 ### Security Schemes
 
@@ -112,5 +213,5 @@ To get started with the API, follow these steps:
 
 ## Conclusion
 
-This concludes our documentation for the FastAPI API. If you have any questions or need further assistance, feel free to contact us at contact@example.com.
+This concludes our documentation for the API. If you have any questions or need further assistance, feel free to contact me
 
