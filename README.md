@@ -1,1 +1,1 @@
-"# FastAPI-Social-Media-API" 
+# FastAPI Social MediaAPI
